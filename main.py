@@ -67,7 +67,7 @@ def capture(camera, image):
     # convert lat/long
     south, exif_latitude = convert(iss.sublat)
     west, exif_longitude = convert(iss.sublong)
-    # setting the EXIF tagd specifying current location
+    # setting the EXIF tags specifying current location
     camera.exif_tags["GPS.GPSLatitude"] = exif_latitude
     camera.exif_tags['GPS.GPSLatitudeRef'] = "S" if south else "N"
     camera.exif_tags['GPS.GPSLongitude'] = exif_longitude
@@ -91,11 +91,14 @@ i = 0
 while (now_time < start_time + timedelta(minutes=178)):
 
         # getting lat/long
-        long = get_latlon()
-        lat = get_latlon()
+        longitude = get_latlon()
+        latitude = get_latlon()
 
         # updating the variables
-        data = (datetime.now(), photo_counter, lat, long)
+        data = (now_time, 
+                photo_counter, 
+                latitude, 
+                longitude)
 
         # capture image
         for i in range(4):
