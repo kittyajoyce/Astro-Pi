@@ -11,7 +11,7 @@ import cv2 as cv
 dir_path = Path(__file__).parent.resolve()
 
 # Set a log file name
-logfile(dir_path + /"jinro.log")
+logfile(dir_path / "jinro.log")
 
 # Latest TLE data for ISS location
 name = "ISS (ZARYA)"
@@ -38,19 +38,18 @@ def add_csv_data(data_file, data):
     # Add a row of data to the data_file CSV
     with open(data_file, 'a') as f:
         writer = csv.writer(f)
-        writer.writer.writerow(data)
+        writer.writerow(data)
 
+# return current lat/long to degrees
+def get_latlon():
+    iss.compute() 
+    return (iss.sublat / degree, iss.sublong / degree)
 
 # assigning variables convert
 def convert(angle):
     degrees, minutes, seconds = (float(field) for field in str(angle).split(":"))
     exif_angle = f'{abs(degrees):.0f}/1,{minutes:.0f}/1,{seconds*10:.0f}/10'
     return degrees < 0, exif_angle
-
-# return current lat/long to degrees
-def get_latlon():
-    iss.compute() 
-    return (iss.sublat / degree, iss.sublong / degree)
 
 # capture image with lat/long EXIF tags
 def capture(camera, image):
@@ -72,7 +71,7 @@ def capture(camera, image):
 
 
 # assigning variable data_file
-data_file = dir_path/"data.csv"
+data_file = dir_path / "data.csv"
 
 # initialise the CSV file
 create_csv_file(data_file)
@@ -83,11 +82,11 @@ photo_counter = 1
 # rassigning variable start_time
 start_time = datetime.now()
 
-#assigning variable now_time
+# assigning variable now_time
 now_time = datetime.now()
 
 # assigning variable i
-i = 1
+i = 0
 
 # run a loop for (almost) three hours
 while (now_time < start_time + timedelta(minutes=178)):
@@ -98,7 +97,7 @@ while (now_time < start_time + timedelta(minutes=178)):
         
         # Save the data to the file
         data = (
-            datetime.now(),
+            now_time,
             photo_counter,
             lat,
             long
@@ -106,9 +105,9 @@ while (now_time < start_time + timedelta(minutes=178)):
         
         add_csv_data(data_file, data)
         
-        # capture images
+        # capture 4 images of same area
         for i in range(4):
-            image_file = f"{dir_path}/photo_{photo_counter:03d}.jpg"
+            image_file = dir_path / f"/photo_{photo_counter:03d}.jpeg"
             capture(cam, image_file)
             
             # update i
