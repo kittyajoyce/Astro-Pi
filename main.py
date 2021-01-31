@@ -22,7 +22,8 @@ iss = readtle(name, line1, line2)
 iss.compute()
 
 # Set up camera
-cam = PiCamera()
+cam = PiCamera
+# or cam = PiCamera() 
 # Setting resolution V1 camera
 cam.resolution = (1296, 972)
 
