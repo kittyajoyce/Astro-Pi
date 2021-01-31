@@ -97,7 +97,7 @@ while (now_time < start_time + timedelta(minutes=178)):
         
         # Save the data to the file
         data = (
-            now_time,
+            datetimenow(),
             photo_counter,
             lat,
             long
