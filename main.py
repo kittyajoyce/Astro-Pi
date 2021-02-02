@@ -22,8 +22,7 @@ iss = readtle(name, line1, line2)
 iss.compute()
 
 # Set up camera
-cam = PiCamera
-# or cam = PiCamera() 
+cam = PiCamera()
 # Setting resolution V1 camera
 cam.resolution = (1296, 972)
 
@@ -91,14 +90,14 @@ i = 0
 
 # run a loop for (almost) three hours
 while (now_time < start_time + timedelta(minutes=178)):
-    '''try:'''
+    try:
     
         # get latitude and longitude
         lat, long = get_latlon()
         
         # Save the data to the file
         data = (
-            datetimenow(),
+            datetime.now(),
             photo_counter,
             lat,
             long
@@ -108,11 +107,8 @@ while (now_time < start_time + timedelta(minutes=178)):
         
         # capture 4 images of same area
         for i in range(4):
-            image_file = dir_path / f"/photo_{photo_counter:03d}.jpeg"
-            capture(cam, image_file)
-            
-            # update i
-            i += 1
+            image_file = dir_path / f"photo_{photo_counter:03d}.jpeg"
+            capture(cam, str(image_file))
             
             # update photo_counter
             photo_counter += 1
@@ -125,5 +121,5 @@ while (now_time < start_time + timedelta(minutes=178)):
         # update the current time
         now_time = datetime.now()
         
-    '''except Exception as e:
-        logger.error('{}: {})'.format(e.__class__.__name__, e))'''
+    except Exception as e:
+        logger.error('{}: {})'.format(e.__class__.__name__, e))
