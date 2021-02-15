@@ -1,5 +1,6 @@
-from logzero import logger, logfile
-from ephem import readtle, degree
+# imports from libraries
+from logzero import logger, logfile     
+from ephem import readtle, degree       
 from picamera import PiCamera
 from datetime import datetime, timedelta
 from time import sleep
@@ -8,7 +9,8 @@ from pathlib import Path
 import csv
 import cv2 as cv
 
-dir_path = Path(__file__).parent.resolve()
+dir_path = Path(__file__).parent.resolve()      # directory to file
+# variable __file__ contains the path to the module imported
 
 # Set a log file name
 logfile(dir_path / "jinro.log")
