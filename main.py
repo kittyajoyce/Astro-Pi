@@ -82,7 +82,7 @@ create_csv_file(data_file)
 # initialise the photo_counter
 photo_counter = 1
 
-# rassign variable start_time
+# assign variable start_time
 start_time = datetime.now()
 
 # assign variable now_time
