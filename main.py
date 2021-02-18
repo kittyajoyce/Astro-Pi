@@ -33,7 +33,7 @@ def create_csv_file(data_file):
     # create a new CSV file and adding the header row
     with open(data_file, 'w') as f:
         writer = csv.writer(f)
-        header = ("Date/time", "Photo Counter", "Latitude", "Longitude", "Temperature")
+        header = ("Time", "Photo Counter", "Latitude", "Longitude", "Temperature")
         writer.writerow(header)
 
 def add_csv_data(data_file, data):
@@ -92,7 +92,7 @@ now_time = datetime.now()
 i = 0
 
 # run a loop for (almost) three hours
-while (now_time < start_time + timedelta(minutes=177)):
+while (now_time < start_time + timedelta(minutes=178)):
     try:
     
         # get latitude and longitude
@@ -128,6 +128,7 @@ while (now_time < start_time + timedelta(minutes=177)):
         
         # update the current time
         now_time = datetime.now()
-        
+      
+    # any errors logged in format
     except Exception as e:
         logger.error('{}: {})'.format(e.__class__.__name__, e))
