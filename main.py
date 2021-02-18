@@ -124,7 +124,7 @@ while (now_time < start_time + timedelta(minutes=177)):
             logger.info(f"iteration{photo_counter}")
         
         # time between each four images
-        sleep(12)
+        sleep(15)
         
         # update the current time
         now_time = datetime.now()
