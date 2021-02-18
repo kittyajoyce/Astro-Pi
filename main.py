@@ -33,7 +33,7 @@ def create_csv_file(data_file):
     # create a new CSV file and adding the header row
     with open(data_file, 'w') as f:
         writer = csv.writer(f)
-        header = ("Date/time", "Temperature")
+        header = ("Date/time", "Photo Counter", "Latitude", "Longitude", "Temperature")
         writer.writerow(header)
 
 def add_csv_data(data_file, data):
